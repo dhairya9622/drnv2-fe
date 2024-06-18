@@ -1,6 +1,7 @@
 // components/component/MessageContainer.jsx
 import { UserMessage } from './UserMessage';
 import { ServerMessage } from './ServerMessage';
+import {ReactTyped} from "react-typed";
 
 export function MessageContainer({ messages }) {
     return (

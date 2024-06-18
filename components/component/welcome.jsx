@@ -7,16 +7,24 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import {Layout} from "@/components/Layout/layout";
+import {ReactTyped} from "react-typed";
+import {useState} from "react";
 
 export function Welcome() {
+    const [loading, setLoading] = useState(false);
+
+    const handleRecruiterClick = () => {
+        setLoading(true);
+        window.location.href = "/chat";
+    };
     return (
         <Layout>
         <main className="flex flex-col items-center justify-center min-h-screen">
             <div className="flex flex-col items-center justify-center gap-6">
                 <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 animate-typing relative">
-                    {`
-          > Hello world! Stay tuned as I revamp my digital playground.`}
-                    <span className="inline-block w-2 h-6 bg-white animate-cursor" />
+                   <ReactTyped strings={[`> Hello world! Stay tuned as I revamp my digital playground.`]}
+                                typeSpeed={40}
+                                cursorChar={''}/>
                 </h1>
                 <div className="flex flex-col items-center gap-4 opacity-100 animate-fade-in">
                     <div className="flex items-center gap-8">
@@ -104,12 +112,12 @@ export function Welcome() {
                                     <div className="grid gap-4 py-4">
                                         <Link
                                             className="btn btn-primary px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold active:scale-95 transition-transform"
-                                            href="/chat">
+                                            href="/chat" onClick={handleRecruiterClick}>
                                             I'm a recruiter
                                         </Link>
                                         <Link
                                             className="btn btn-secondary px-4 py-2 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-semibold active:scale-95 transition-transform"
-                                            href="#">
+                                            href="/chat">
                                             I want to hire a freelancer
                                         </Link>
                                     </div>

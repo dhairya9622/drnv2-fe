@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageContainer } from "@/app/chat/component/MessageContainer";
 import { TextArea } from "@/app/chat/component/TextArea";
-import {Layout} from "@/components/Layout/layout";
+import { Layout } from "@/components/Layout/layout";
 
 export function ChatApp() {
     const [messages, setMessages] = useState([
@@ -12,21 +12,41 @@ export function ChatApp() {
     const [userInput, setUserInput] = useState('');
     const messagesEndRef = useRef(null);
 
-    const handleSendMessage = () => {
+    const handleSendMessage = async () => {
         if (userInput.trim() === '') return;
 
-        // Add user message to messages
-        setMessages([...messages, { type: 'user', text: userInput }]);
+        const newMessages = [...messages, { type: 'user', text: userInput }];
+        setMessages(newMessages);
 
-        // Simulate server response
-        setTimeout(() => {
+        try {
+            const response = await fetch('http://localhost:8080/askMe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userInput }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.text(); // Parse the response as text
+            const lines = data.split('\n')
+                .map(line => line.trim())
+                .filter(line => line !== '');
             setMessages((prevMessages) => [
                 ...prevMessages,
-                { type: 'server', text: 'Certainly, I can help you with that.' },
+                ...lines.map(line => ({ type: 'server', text: line }))
             ]);
-        }, 1000);
+        } catch (error) {
+            console.error('Error:', error);
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                { type: 'server', text: 'Error: Could not get a response from the server.' },
+            ]);
+        }
 
-        // Clear input field
         setUserInput('');
     };
 
@@ -34,36 +54,41 @@ export function ChatApp() {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
+    const handleKeyDown = async (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            await handleSendMessage();
+        }
+    };
+
     return (
         <Layout>
-        <div className="flex flex-col h-screen">
-            <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar">
-                <MessageContainer messages={messages} />
-                <div ref={messagesEndRef} />
-            </div>
-            <div className="flex items-center justify-center p-4">
-                <div className="absolute bottom-8 w-full max-w-3xl flex items-center justify-center">
-                    <div className="flex w-full max-w-3xl rounded-full bg-[#1e2c3f] px-4 py-2 shadow-inner shadow-[#0c0f14]">
-                        <TextArea
-                            value={userInput}
-                            onChange={(e) => setUserInput(e.target.value)}
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' && !e.shiftKey) {
-                                    e.preventDefault();
-                                    handleSendMessage();
-                                }
-                            }}
-                        />
-                        <button
-                            className="ml-4 rounded-full bg-gradient-to-r from-[#1e2533] to-[#0f1a2b] px-4 py-2 text-white shadow-md transition-colors hover:bg-gradient-to-br hover:from-[#071121] hover:to-[#1e2533] focus:outline-none focus:ring-2 focus:ring-[#071121] focus:ring-opacity-50"
-                            onClick={handleSendMessage}
-                        >
-                            <SendIcon className="h-4 w-4 transition-transform hover:scale-110 hover:brightness-125" />
-                        </button>
+            <div className="flex flex-col h-screen">
+                <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar" style={{ paddingBottom: '5rem' }}>
+                    <MessageContainer messages={messages} />
+                    <div ref={messagesEndRef} />
+                </div>
+
+
+
+                <div className="flex items-center justify-center p-4">
+                    <div className="fixed bottom-8 w-full max-w-3xl flex items-center justify-center">
+                        <div className="flex w-full max-w-3xl rounded-full bg-[#1e2c3f] px-4 py-2 shadow-inner shadow-[#0c0f14]">
+                            <TextArea
+                                value={userInput}
+                                onChange={(e) => setUserInput(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                            />
+                            <button
+                                className="ml-4 rounded-full bg-gradient-to-r from-[#1e2533] to-[#0f1a2b] px-4 py-2 text-white shadow-md transition-colors hover:bg-gradient-to-br hover:from-[#071121] hover:to-[#1e2533] focus:outline-none focus:ring-2 focus:ring-[#071121] focus:ring-opacity-50"
+                                onClick={async () => await handleSendMessage()}
+                            >
+                                <SendIcon className="h-4 w-4 transition-transform hover:scale-110 hover:brightness-125" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </Layout>
     );
 }
