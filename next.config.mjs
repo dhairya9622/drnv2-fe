@@ -5,6 +5,7 @@ const withBundleAnalyzerConfig = withBundleAnalyzer({
 });
 
 const nextConfig = {
+    output: 'export', // Add this line to enable static export
     reactStrictMode: true, // Enables React's strict mode to highlight potential problems in the application.
     swcMinify: true, // Uses the SWC compiler for faster builds and smaller bundles.
     images: {

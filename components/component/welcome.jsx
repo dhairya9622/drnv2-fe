@@ -8,36 +8,30 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import {Layout} from "@/components/Layout/layout";
 import {ReactTyped} from "react-typed";
-import {useState} from "react";
+
 
 export function Welcome() {
-    const [loading, setLoading] = useState(false);
-
-    const handleRecruiterClick = () => {
-        setLoading(true);
-        window.location.href = "/chat";
-    };
     return (
         <Layout>
         <main className="flex flex-col items-center justify-center min-h-screen">
             <div className="flex flex-col items-center justify-center gap-6">
                 <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 animate-typing relative">
-                   <ReactTyped strings={[`> Hello world! Stay tuned as I revamp my digital playground.`]}
-                                typeSpeed={40}
+                   <ReactTyped strings={[`> Hello world! Stay tuned as I revamp my digital Playground!`]}
+                                typeSpeed={30}
                                 cursorChar={''}/>
                 </h1>
                 <div className="flex flex-col items-center gap-4 opacity-100 animate-fade-in">
                     <div className="flex items-center gap-8">
                         <a
                             className="text-gray-300 hover:text-gray-100 transition-colors hover:scale-105 transform transition-transform duration-300"
-                            href="#"
+                            href="https://github.com/dhairya9622"
                             rel="noopener noreferrer"
                             target="_blank">
                             <GithubIcon className="w-6 h-6" />
                         </a>
                         <a
                             className="text-gray-300 hover:text-gray-100 transition-colors hover:scale-105 transform transition-transform duration-300"
-                            href="#"
+                            href="https://www.linkedin.com/in/dhairyagajjar190/"
                             rel="noopener noreferrer"
                             target="_blank">
                             <LinkedinIcon className="w-6 h-6" />
@@ -46,48 +40,24 @@ export function Welcome() {
                             <DialogTrigger asChild>
                                 <a
                                     className="text-gray-300 hover:text-gray-100 transition-colors hover:scale-105 transform transition-transform duration-300"
-                                    href="#"
+
                                     rel="noopener noreferrer">
                                     <PhoneIcon className="w-6 h-6" />
                                 </a>
                             </DialogTrigger>
                             <DialogContent className="sm:max-w-[425px] bg-gray-800 text-gray-300 animate-text-gradient bg-gradient-to-r from-blue-700 to-purple-800">
-                                <DialogHeader>
-                                    <DialogTitle className="hover:scale-[1.02] transition-transform">Contact Us</DialogTitle>
-                                    <DialogDescription>Fill out the form to get in touch.</DialogDescription>
-                                </DialogHeader>
+
                                 <div className="grid gap-4 py-4">
                                     <div>
-                                        <Label className="mb-1" htmlFor="email">
-                                            Email
-                                        </Label>
-                                        <Input
-                                            className="text-gray-800"
-                                            id="email"
-                                            placeholder="Enter your email"
-                                            required
-                                            type="email" />
-                                    </div>
-                                    <div>
                                         <Label className="mb-1" htmlFor="subject">
-                                            Subject (Optional)
+                                            Phone: +1 (551) 301-4323
                                         </Label>
-                                        <Input className="text-gray-800" id="subject" placeholder="Enter a subject" />
                                     </div>
                                     <div>
                                         <Label className="mb-1" htmlFor="message">
-                                            Message
+                                            Email : contact@dhairya.io
                                         </Label>
-                                        <Textarea
-                                            className="text-gray-800"
-                                            id="message"
-                                            placeholder="Enter your message"
-                                            required
-                                            rows={4} />
                                     </div>
-                                    <Button className="mt-8 text-white bg-gradient-to-r from-blue-600 to-purple-700 animate-typing shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 transition-shadow px-6 py-3 rounded-lg font-semibold hover:scale-[1.02] hover:translate-y-[-1px] transition-transform duration-300">
-                                        Submit
-                                    </Button>
                                 </div>
                             </DialogContent>
                         </Dialog>
@@ -102,7 +72,7 @@ export function Welcome() {
                     <Dialog>
                         <DialogTrigger asChild>
                             <Button className="mt-8 text-white bg-gradient-to-r from-blue-600 to-purple-700 animate-typing shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 transition-shadow px-6 py-3 rounded-lg font-semibold hover:scale-[1.02] hover:translate-y-[-1px] transition-transform duration-300">
-                                Chat with Dhairya's AI assistant
+                                Chat with my AI assistant!
                             </Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[425px] bg-gray-800 text-gray-300 animate-text-gradient bg-gradient-to-r from-blue-700 to-purple-800">
@@ -112,8 +82,8 @@ export function Welcome() {
                                     <div className="grid gap-4 py-4">
                                         <Link
                                             className="btn btn-primary px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold active:scale-95 transition-transform"
-                                            href="/chat" onClick={handleRecruiterClick}>
-                                            I'm a recruiter
+                                            href="/chat" >
+                                            I am a recruiter
                                         </Link>
                                         <Link
                                             className="btn btn-secondary px-4 py-2 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-semibold active:scale-95 transition-transform"

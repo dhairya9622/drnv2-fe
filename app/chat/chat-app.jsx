@@ -7,7 +7,7 @@ import { Layout } from "@/components/Layout/layout";
 
 export function ChatApp() {
     const [messages, setMessages] = useState([
-        { type: 'server', text: 'Hello, how can I assist you today?' },
+        { type: 'server', text: 'Hello, how can I assist you today regarding Dhairya Gajjar?' },
     ]);
     const [userInput, setUserInput] = useState('');
     const messagesEndRef = useRef(null);
@@ -19,7 +19,7 @@ export function ChatApp() {
         setMessages(newMessages);
 
         try {
-            const response = await fetch('http://localhost:8080/askMe', {
+            const response = await fetch('https://nk7zxiaoh1.execute-api.ap-south-1.amazonaws.com/dev/askMe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
