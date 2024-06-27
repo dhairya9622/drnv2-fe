@@ -19,7 +19,7 @@ export function ChatApp() {
         setMessages(newMessages);
 
         try {
-            const response = await fetch('https://nk7zxiaoh1.execute-api.ap-south-1.amazonaws.com/dev/askMe', {
+            const response = await fetch('https://bwp3hnkizc.execute-api.us-east-1.amazonaws.com/prod/askMe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
