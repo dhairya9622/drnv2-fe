@@ -65,36 +65,36 @@ export function Welcome() {
                     <Separator className="w-full" orientation="horizontal">
                         <div className="flex items-center">
                             <div className="flex-grow border-t border-gray-700" />
-                            <span className="flex-shrink mx-4 text-gray-400">or</span>
+                            <span className="flex-shrink mx-4 text-gray-400">DG</span>
                             <div className="flex-grow border-t border-gray-700" />
                         </div>
                     </Separator>
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <Button className="mt-8 text-white bg-gradient-to-r from-blue-600 to-purple-700 animate-typing shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 transition-shadow px-6 py-3 rounded-lg font-semibold hover:scale-[1.02] hover:translate-y-[-1px] transition-transform duration-300">
-                                Chat with my AI assistant!
-                            </Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px] bg-gray-800 text-gray-300 animate-text-gradient bg-gradient-to-r from-blue-700 to-purple-800">
-                            <DialogHeader>
-                                <DialogTitle className="hover:scale-[1.02] transition-transform">
-                                    Who are you?
-                                    <div className="grid gap-4 py-4">
-                                        <Link
-                                            className="btn btn-primary px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold active:scale-95 transition-transform"
-                                            href="/chat" >
-                                            I am a recruiter
-                                        </Link>
-                                        <Link
-                                            className="btn btn-secondary px-4 py-2 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-semibold active:scale-95 transition-transform"
-                                            href="/chat">
-                                            I want to hire a freelancer
-                                        </Link>
-                                    </div>
-                                </DialogTitle>
-                            </DialogHeader>
-                        </DialogContent>
-                    </Dialog>
+                    {/*<Dialog>*/}
+                    {/*    <DialogTrigger asChild>*/}
+                    {/*        <Button className="mt-8 text-white bg-gradient-to-r from-blue-600 to-purple-700 animate-typing shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 transition-shadow px-6 py-3 rounded-lg font-semibold hover:scale-[1.02] hover:translate-y-[-1px] transition-transform duration-300">*/}
+                    {/*            Chat with my AI assistant!*/}
+                    {/*        </Button>*/}
+                    {/*    </DialogTrigger>*/}
+                    {/*    <DialogContent className="sm:max-w-[425px] bg-gray-800 text-gray-300 animate-text-gradient bg-gradient-to-r from-blue-700 to-purple-800">*/}
+                    {/*        <DialogHeader>*/}
+                    {/*            <DialogTitle className="hover:scale-[1.02] transition-transform">*/}
+                    {/*                Who are you?*/}
+                    {/*                <div className="grid gap-4 py-4">*/}
+                    {/*                    <Link*/}
+                    {/*                        className="btn btn-primary px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold active:scale-95 transition-transform"*/}
+                    {/*                        href="/chat" >*/}
+                    {/*                        I am a recruiter*/}
+                    {/*                    </Link>*/}
+                    {/*                    <Link*/}
+                    {/*                        className="btn btn-secondary px-4 py-2 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-semibold active:scale-95 transition-transform"*/}
+                    {/*                        href="/chat">*/}
+                    {/*                        I want to hire a freelancer*/}
+                    {/*                    </Link>*/}
+                    {/*                </div>*/}
+                    {/*            </DialogTitle>*/}
+                    {/*        </DialogHeader>*/}
+                    {/*    </DialogContent>*/}
+                    {/*</Dialog>*/}
                 </div>
             </div>
         </main>

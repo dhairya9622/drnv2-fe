@@ -69,8 +69,6 @@ export function ChatApp() {
                     <div ref={messagesEndRef} />
                 </div>
 
-
-
                 <div className="flex items-center justify-center p-4">
                     <div className="fixed bottom-8 w-full max-w-3xl flex items-center justify-center">
                         <div className="flex w-full max-w-3xl rounded-full bg-[#1e2c3f] px-4 py-2 shadow-inner shadow-[#0c0f14]">
@@ -81,7 +79,7 @@ export function ChatApp() {
                             />
                             <button
                                 className="ml-4 rounded-full bg-gradient-to-r from-[#1e2533] to-[#0f1a2b] px-4 py-2 text-white shadow-md transition-colors hover:bg-gradient-to-br hover:from-[#071121] hover:to-[#1e2533] focus:outline-none focus:ring-2 focus:ring-[#071121] focus:ring-opacity-50"
-                                onClick={async () => await handleSendMessage()}
+                                onClick={handleSendMessage}
                             >
                                 <SendIcon className="h-4 w-4 transition-transform hover:scale-110 hover:brightness-125" />
                             </button>
