@@ -11,7 +11,25 @@ export function ChatApp() {
     ]);
     const [userInput, setUserInput] = useState('');
     const messagesEndRef = useRef(null);
-
+    const [threadId, setThreadId] = useState(null);
+    useEffect(() => {
+        const createThreadId = async () => {
+            try {
+                const response = await fetch('http://dsbc.us-east-1.elasticbeanstalk.com/createThread', {
+                    method: 'GET'
+                });
+                console.log(response)
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok : ${response.statusText}`);
+                }
+                const data = await response.text();
+                setThreadId(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        createThreadId();
+    }, []);
     const handleSendMessage = async () => {
         if (userInput.trim() === '') return;
 
@@ -19,13 +37,17 @@ export function ChatApp() {
         setMessages(newMessages);
 
         try {
-            const response = await fetch('https://bwp3hnkizc.execute-api.us-east-1.amazonaws.com/prod/askMe', {
+            const response = await fetch('http://dsbc.us-east-1.elasticbeanstalk.com/getResponse', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message: userInput }),
+                body: JSON.stringify({
+                    prompt: userInput,
+                    threadId: threadId
+                }),
             });
+            console.log(response)
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
