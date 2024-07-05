@@ -15,7 +15,7 @@ export function ChatApp() {
     useEffect(() => {
         const createThreadId = async () => {
             try {
-                const response = await fetch('https://icdn.dhairya.io/createThread', {
+                const response = await fetch('https://dev5.dhairya.io/createThread', {
                     method: 'GET'
                 });
                 console.log(response)
@@ -37,7 +37,7 @@ export function ChatApp() {
         setMessages(newMessages);
 
         try {
-            const response = await fetch('https://icdn.dhairya.io/getResponse', {
+            const response = await fetch('https://dev5.dhairya.io/getResponse', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
