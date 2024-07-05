@@ -15,7 +15,7 @@ export function ChatApp() {
     useEffect(() => {
         const createThreadId = async () => {
             try {
-                const response = await fetch('https://newapp-env.eba-pthqr4ag.us-east-1.elasticbeanstalk.com/createThread', {
+                const response = await fetch('https://icdn.dhairya.io/createThread', {
                     method: 'GET'
                 });
                 console.log(response)
@@ -37,7 +37,7 @@ export function ChatApp() {
         setMessages(newMessages);
 
         try {
-            const response = await fetch('https://newapp-env.eba-pthqr4ag.us-east-1.elasticbeanstalk.com/getResponse', {
+            const response = await fetch('https://icdn.dhairya.io/getResponse', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
