@@ -19,11 +19,11 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+          to bottom,
+          transparent,
+          rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -31,7 +31,6 @@ body {
     text-wrap: balance;
   }
 }
-
 
 /* Custom scrollbar styles */
 .custom-scrollbar::-webkit-scrollbar {
@@ -52,7 +51,6 @@ body {
   background-color: #3c4656;
 }
 
-/* styles/globals.css or any other global CSS file */
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #3498db; /* Blue */
@@ -67,4 +65,41 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+.bg-animated {
+  background: linear-gradient(135deg, #05134e, #08183a, #031059);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+}
 
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive adjustments */
+.container {
+  @apply flex flex-col min-h-screen;
+}
+
+.chat-container {
+  @apply flex-1 overflow-y-auto px-4 py-2 sm:px-6 sm:py-4 custom-scrollbar;
+}
+
+.input-container {
+  @apply flex items-center justify-center p-4 fixed bottom-0 w-full;
+}
+
+.input-wrapper {
+  @apply flex w-full max-w-lg rounded-full bg-[#1e2c3f] px-4 py-2 shadow-inner shadow-[#0c0f14];
+}
+
+.button {
+  @apply ml-4 rounded-full bg-gradient-to-r from-[#1e2533] to-[#0f1a2b] px-4 py-2 text-white shadow-md transition-colors hover:bg-gradient-to-br hover:from-[#071121] hover:to-[#1e2533] focus:outline-none focus:ring-2 focus:ring-[#071121] focus:ring-opacity-50;
+}
