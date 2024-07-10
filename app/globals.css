@@ -103,3 +103,15 @@ body {
 .button {
   @apply ml-4 rounded-full bg-gradient-to-r from-[#1e2533] to-[#0f1a2b] px-4 py-2 text-white shadow-md transition-colors hover:bg-gradient-to-br hover:from-[#071121] hover:to-[#1e2533] focus:outline-none focus:ring-2 focus:ring-[#071121] focus:ring-opacity-50;
 }
+
+@media (max-width: 767px) {
+  /* Your styles for mobile devices */
+  body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  .container {
+    height: auto; /* Adjust the height for mobile */
+    padding: 0 1rem; /* Adjust padding for mobile */
+  }
+  /* Add any other overrides here */
+}
