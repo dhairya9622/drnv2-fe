@@ -12,9 +12,10 @@ const MobilePage = () => {
             <main className="flex flex-col items-center justify-center min-h-screen">
                 <div className="flex flex-col items-center justify-center gap-6">
                     <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 animate-typing relative">
-                        <ReactTyped strings={[`> Hello world! Stay tuned as I revamp my digital Playground!`]}
+                        <ReactTyped strings={[`> Hello world!`]}
                                     typeSpeed={30}
-                                    cursorChar={''}/>
+                                    cursorChar={'|'}
+                                    blink={true}/>
                     </h1>
                     <div className="flex flex-col items-center gap-4 opacity-100 animate-fade-in">
                         <div className="flex items-center gap-8">
