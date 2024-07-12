@@ -8,9 +8,14 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import {Layout} from "@/components/Layout/layout";
 import {ReactTyped} from "react-typed";
+import {isMobile} from "react-device-detect";
+import MobilePage from "@/components/component/mobile";
 
 
 export function Welcome() {
+    if (isMobile) {
+        return <MobilePage />
+    }
     return (
         <Layout>
         <main className="flex flex-col items-center justify-center min-h-screen">
