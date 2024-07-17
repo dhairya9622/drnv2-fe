@@ -1,8 +1,7 @@
 "use client";
-import { DialogTrigger, DialogTitle, DialogDescription, DialogHeader, DialogContent, Dialog } from "@/components/ui/dialog";
+import { DialogTrigger, DialogTitle, DialogHeader, DialogContent, Dialog } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
@@ -55,7 +54,7 @@ export function Welcome() {
                                 <div className="grid gap-4 py-4">
                                     <div>
                                         <Label className="mb-1" htmlFor="subject">
-                                            Phone: +1 (551) 301-4323
+                                            Phone: +1 (551) 301-4323 / +91 9152900204
                                         </Label>
                                     </div>
                                     <div>
