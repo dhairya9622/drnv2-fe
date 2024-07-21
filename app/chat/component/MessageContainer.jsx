@@ -5,7 +5,7 @@ import {ReactTyped} from "react-typed";
 
 export function MessageContainer({ messages }) {
     return (
-        <div className="flex flex-col gap-2 mx-auto max-w-3xl w-full">
+        <div className="flex flex-col gap-2 mx-auto max-w-3xl w-full h-max">
             {messages.map((message, index) => {
                 if (message.type === 'user') {
                     return <UserMessage key={index} text={message.text} />;

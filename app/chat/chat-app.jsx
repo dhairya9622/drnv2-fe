@@ -10,31 +10,37 @@ export function ChatApp() {
         { type: 'server', text: 'Hello, how can I assist you today regarding Dhairya Gajjar?' },
     ]);
     const [userInput, setUserInput] = useState('');
+    const [isSending, setIsSending] = useState(false);
     const messagesEndRef = useRef(null);
     const [threadId, setThreadId] = useState(null);
+
     useEffect(() => {
         const createThreadId = async () => {
             try {
                 const response = await fetch('https://dev5.dhairya.io/createThread', {
                     method: 'GET'
                 });
-                console.log(response)
+
                 if (!response.ok) {
-                    throw new Error(`Network response was not ok : ${response.statusText}`);
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
                 }
+
                 const data = await response.text();
                 setThreadId(data);
             } catch (error) {
-                console.error(error);
+                console.error('Error:', error);
             }
         }
         createThreadId();
     }, []);
+
     const handleSendMessage = async () => {
-        if (userInput.trim() === '') return;
+        if (userInput.trim() === '' || isSending) return;
 
         const newMessages = [...messages, { type: 'user', text: userInput }];
         setMessages(newMessages);
+        setIsSending(true);
+
 
         try {
             const response = await fetch('https://dev5.dhairya.io/getResponse', {
@@ -47,7 +53,6 @@ export function ChatApp() {
                     threadId: threadId
                 }),
             });
-            console.log(response)
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -57,6 +62,7 @@ export function ChatApp() {
             const lines = data.split('\n')
                 .map(line => line.trim())
                 .filter(line => line !== '');
+
             setMessages((prevMessages) => [
                 ...prevMessages,
                 ...lines.map(line => ({ type: 'server', text: line }))
@@ -69,7 +75,8 @@ export function ChatApp() {
             ]);
         }
 
-        setUserInput('');
+
+        setIsSending(false);
     };
 
     useEffect(() => {
@@ -86,22 +93,24 @@ export function ChatApp() {
     return (
         <Layout>
             <div className="flex flex-col h-screen">
-                <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar" style={{ paddingBottom: '5rem' }}>
+                <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar h-4/5" style={{ paddingBottom: '5rem' }}>
                     <MessageContainer messages={messages} />
                     <div ref={messagesEndRef} />
                 </div>
 
-                <div className="flex items-center justify-center p-4">
+                <div className="flex items-center justify-center p-4 h-1/5">
                     <div className="fixed bottom-8 w-full max-w-3xl flex items-center justify-center">
                         <div className="flex w-full max-w-3xl rounded-full bg-[#1e2c3f] px-4 py-2 shadow-inner shadow-[#0c0f14]">
                             <TextArea
                                 value={userInput}
                                 onChange={(e) => setUserInput(e.target.value)}
                                 onKeyDown={handleKeyDown}
+                                disabled={isSending}
                             />
                             <button
                                 className="ml-4 rounded-full bg-gradient-to-r from-[#1e2533] to-[#0f1a2b] px-4 py-2 text-white shadow-md transition-colors hover:bg-gradient-to-br hover:from-[#071121] hover:to-[#1e2533] focus:outline-none focus:ring-2 focus:ring-[#071121] focus:ring-opacity-50"
                                 onClick={handleSendMessage}
+                                disabled={isSending}
                             >
                                 <SendIcon className="h-4 w-4 transition-transform hover:scale-110 hover:brightness-125" />
                             </button>
