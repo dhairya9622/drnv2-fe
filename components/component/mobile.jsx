@@ -9,7 +9,7 @@ const MobilePage = () => {
     return (
         <MobileLayout>
         <div>
-            <main className="flex flex-col items-center justify-center min-h-screen">
+            <main className="flex flex-col items-center justify-center max-h-screen">
                 <div className="flex flex-col items-center justify-center gap-6">
                     <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 animate-typing relative">
                         <ReactTyped strings={[`> Hello world!`]}
